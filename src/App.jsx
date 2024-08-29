@@ -6,6 +6,7 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchImages } from "./gallery-api";
+import "./App.css";
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -61,7 +62,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <SearchBar onSubmit={handleSearchSubmit} />
       <Toaster position="top-right" />
 
