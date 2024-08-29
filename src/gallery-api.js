@@ -1,4 +1,3 @@
-// src/gallery-api.js
 import axios from "axios";
 
 const API_URL = "https://api.unsplash.com/search/photos";

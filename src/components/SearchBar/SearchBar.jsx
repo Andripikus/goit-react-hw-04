@@ -1,32 +1,40 @@
 import React, { useState } from "react";
-import styles from "./SearchBar.module.css";
+import css from "./SearchBar.module.css";
 import toast from "react-hot-toast";
 
 export default function SearchBar({ onSubmit }) {
   const [query, setQuery] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim()) {
-      toast.error("Please enter a search term.");
+      setError("Please enter a search term.");
+      toast.error("Please enter a search term.", {
+        className: css.toastBottomCenter,
+      });
       return;
     }
+    setError(null);
     onSubmit(query);
     setQuery("");
   };
 
   return (
-    <header className={styles.header}>
-      <form className={styles.form} onSubmit={handleSubmit}>
+    <header className={css.header}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Search images and photos"
-          className={styles.input}
+          className={css.input}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button type="submit" className={styles.button}>Search</button>
+        <button type="submit" className={css.button}>
+          Search
+        </button>
       </form>
+      {error && <p className={css.error}>{error}</p>}
     </header>
   );
 }

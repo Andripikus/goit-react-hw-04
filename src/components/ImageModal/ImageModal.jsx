@@ -1,26 +1,27 @@
-// src/components/ImageModal/ImageModal.jsx
 import React from "react";
 import Modal from "react-modal";
-import styles from "./ImageModal.module.css";
+import css from "./ImageModal.module.css";
 
-// Це важливо для коректної роботи модального вікна
 Modal.setAppElement("#root");
 
 export default function ImageModal({ isOpen, onRequestClose, image }) {
   if (!image) return null;
- console.log('Modal isOpen:', isOpen); // Перевірка чи модальне вікно відкрите
-  console.log('Image in modal:', image); // Перевірка отриманого зображення
-
+  console.log("Modal isOpen:", isOpen);
+  console.log("Image in modal:", image);
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className={styles.modalContent}
-      overlayClassName={styles.modalOverlay}
+      className={css.modalContent}
+      overlayClassName={css.modalOverlay}
     >
-      <div className={styles.modal}>
-        <img src={image.urls.regular} alt={image.alt_description} className={styles.image} />
-        <p className={styles.author}>Author: {image.user.name}</p>
+      <div className={css.modal}>
+        <img
+          src={image.urls.regular}
+          alt={image.alt_description}
+          className={css.image}
+        />
+        <p className={css.author}>Author: {image.user.name}</p>
       </div>
     </Modal>
   );

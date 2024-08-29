@@ -1,41 +1,49 @@
 .header {
-    background-color: #3f51b5;
-    padding: 20px;
-    text-align: center;
+  background-color: #3f51b5;
+  padding: 20px;
+  text-align: center;
 }
 
 .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input {
-    width: 400px;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
+  width: 400px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
 }
 
 .button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #303f9f;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-    border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #303f9f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 4px;
 }
 
 .button:hover {
-    background-color: #283593;
+  background-color: #283593;
 }
 
-@media (max-width: 768px) {
-    .input {
-        width: 250px;
-    }
+.error {
+  color: red;
+  margin-top: 10px;
 }
+
+.toastBottomCenter {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+}
+
