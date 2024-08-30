@@ -7,6 +7,7 @@ import ImageModal from "./components/ImageModal/ImageModal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchImages } from "./gallery-api";
+import "./App.css";
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -70,7 +71,7 @@ export default function App() {
   return (
     <div className="app-container">
       <SearchBar onSubmit={handleSearchSubmit} />
-
+      <Toaster/>
       <ImageGallery images={images} onImageClick={handleImageClick} />
 
       {loading && <Loader />}
