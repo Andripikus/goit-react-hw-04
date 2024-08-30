@@ -4,15 +4,16 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchImages } from "./gallery-api";
-import "./App.css";
 
 export default function App() {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
   const [showBtn, setShowBtn] = useState(false);
@@ -22,6 +23,7 @@ export default function App() {
 
     const fetchData = async () => {
       setLoading(true);
+      setError(null);
       try {
         const data = await fetchImages(query, page);
         setImages((prevImages) => [...prevImages, ...data.results]);
@@ -31,7 +33,10 @@ export default function App() {
 
         toast.dismiss();
       } catch (err) {
-        toast.error("Oops!!! Something went wrong");
+        setError("Failed to fetch images. Please try again later.");
+        toast.error("Oops!!! Something went wrong.", {
+          position: "top-right",
+        });
       } finally {
         setLoading(false);
       }
@@ -46,6 +51,7 @@ export default function App() {
     setImages([]);
     setTotalPages(0);
     setShowBtn(false);
+    setError(null);
     toast.dismiss();
   };
 
@@ -64,11 +70,12 @@ export default function App() {
   return (
     <div className="app-container">
       <SearchBar onSubmit={handleSearchSubmit} />
-      <Toaster position="top-right" />
 
       <ImageGallery images={images} onImageClick={handleImageClick} />
 
       {loading && <Loader />}
+
+      {error && <ErrorMessage message={error} />}
 
       {showBtn && !loading && page < totalPages && (
         <LoadMoreBtn onClick={handleLoadMore} />

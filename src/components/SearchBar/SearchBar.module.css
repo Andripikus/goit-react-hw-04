@@ -35,15 +35,9 @@
 }
 
 .error {
+  text-align: center;
   color: red;
   margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
-
-.toastBottomCenter {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10px;
-}
-

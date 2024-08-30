@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import css from "./SearchBar.module.css";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SearchBar({ onSubmit }) {
   const [query, setQuery] = useState("");
@@ -9,9 +9,12 @@ export default function SearchBar({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim()) {
-      setError("Please enter a search term.");
       toast.error("Please enter a search term.", {
-        className: css.toastBottomCenter,
+        position: "top-center",
+        style: {
+          backgroundColor: "#ff4d4f",
+          color: "#fff",
+        },
       });
       return;
     }
@@ -35,6 +38,7 @@ export default function SearchBar({ onSubmit }) {
         </button>
       </form>
       {error && <p className={css.error}>{error}</p>}
+      <Toaster />
     </header>
   );
 }
